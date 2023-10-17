@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clima em Portugal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Clima em Portugal</h1>
+
+    <form method="post">
+        <select name="cidade">
+            <option value="">Cidade</option>
+            <option value="1010500">Lisboa</option>
+            <option value="1030300">Porto</option>
+            <option value="1141600">Santarém</option>
+            <!-- Adicione outras cidades aqui -->
+        </select>
+        <input type="submit" value="Consultar">
+    </form>
+
+    <div>
+        {% if clima %}
+            <!-- <h2>{{ clima.cidade }} Portugal</h2> -->
+            <p>Temperatura Máxima: {{ clima.temperatura_max }}ºC</p>
+            <p>Temperatura Mínima: {{ clima.temperatura_min }}ºC</p>
+            <p>Probabilidade Precipitação: {{ clima.probabilidade_prec }}%</p>
+            <p>Data Consulta: {{ clima.data_consulta }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
