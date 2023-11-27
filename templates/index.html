@@ -7,11 +7,15 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <video autoplay>
+        <source src="{{ url_for('static', filename='clima.mp4')}}" type="video/mp4"> 
+    </video>
     <h1>Clima em Portugal</h1>
+    
 
     <form method="post">
         <select name="cidade">
-            <option value="">Cidade</option>
+            <option value="">Escolha uma cidade</option>
             <option value="1010500">Lisboa</option>
             <option value="1030300">Porto</option>
             <option value="1141600">Santarém</option>
@@ -22,11 +26,13 @@
 
     <div>
         {% if clima %}
-            <!-- <h2>{{ clima.cidade }} Portugal</h2> -->
-            <p>Temperatura Máxima: {{ clima.temperatura_max }}ºC</p>
-            <p>Temperatura Mínima: {{ clima.temperatura_min }}ºC</p>
-            <p>Probabilidade Precipitação: {{ clima.probabilidade_prec }}%</p>
-            <p>Data Consulta: {{ clima.data_consulta }}</p>
+            <h2>Clima em {{ nome_cidade }}</h2>
+            <p>Temperatura Máxima de {{ clima.temperatura_max }}ºC</p>
+            <p>Temperatura Mínima de {{ clima.temperatura_min }}ºC</p>
+            <p>Probabilidade de Precipitação: {{ clima.probabilidade_prec }}%</p>
+            <p>Clima em {{ clima.data_consulta }}</p>
+        {% else %}
+            <p>Sem informação disponível.</p>
         {% endif %}
     </div>
 </body>
