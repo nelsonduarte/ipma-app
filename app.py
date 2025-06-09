@@ -10,9 +10,10 @@ API_ENDPOINT = "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    nome_cidade = None 
+    clima = None # Vamos preencher isto mais tarde
     if request.method == 'POST':
         cidade_id = request.form.get('cidade')
-        nome_cidade = None  # Vamos preencher isto mais tarde
         if cidade_id:  # Verifica se cidade_id não é vazio
             response = requests.get(f"{API_ENDPOINT}{cidade_id}.json", verify=False)
             dados_clima = response.json()
@@ -30,7 +31,7 @@ def index():
                 elif cidade_id == "1030300":
                     nome_cidade = "Porto"
                 elif cidade_id == "1141600":
-                    nome_cidade == "Santarém"  # Note que deve ser '=', não '=='
+                    nome_cidade = "Santarém"  # Note que deve ser '=', não '=='
             else:
                 clima = None
         else:
